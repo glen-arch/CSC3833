@@ -10,12 +10,14 @@ def house_price_comparison():
     filt["region_name"] = data["Region_Name"]
     filt["property_type"] = data["propertyType"]
     filt["average_price"] = data["averagePrice"]
+    london = data[data["Region_Name"] == "London"]
+    newcastle = data[data["Region_Name"] == "Newcastle upon Tyne"]
     title = "Average house sale prices in London compared to Newcastle upon Tyne 2001 - 2021"
     fig, (ax1, ax2) = plt.subplots(1,2)
     fig.suptitle(title, fontsize=12)
-    ax1.plot(filt["date"], filt["average_price"])
+    ax1.plot(pd.to_datetime(london["Date"]), london["averagePrice"])
     ax1.grid(True)
-    ax2.plot(filt["date"], filt["average_price"])
+    ax2.plot(pd.to_datetime(newcastle["Date"]), newcastle["averagePrice"])
     ax2.grid(True)
     plt.show()
 
