@@ -11,11 +11,12 @@ def house_price_comparison():
     filt["property_type"] = data["propertyType"]
     filt["average_price"] = data["averagePrice"]
     title = "Average house sale prices in London compared to Newcastle upon Tyne 2001 - 2021"
-    plt.plot(filt["date"], filt["average_price"])
-    plt.title(title, fontsize=12)
-    plt.xlabel("Date", fontsize=12)
-    plt.ylabel("Average sale price", fontsize=12)
-    plt.grid(True)
+    fig, (ax1, ax2) = plt.subplots(1,2)
+    fig.suptitle(title, fontsize=12)
+    ax1.plot(filt["date"], filt["average_price"])
+    ax1.grid(True)
+    ax2.plot(filt["date"], filt["average_price"])
+    ax2.grid(True)
     plt.show()
 
 
