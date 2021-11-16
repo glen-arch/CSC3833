@@ -47,7 +47,7 @@ def broadband_comparison():
     m, b = np.polyfit(data["averageDown"], data["averageUpload"], 1)
     correlation = "The correlation between a regions average upload and download speeds is " + str(data["averageDown"].corr(data["averageUpload"]))
     plt.plot(data["averageDown"], m*data["averageDown"] + b, color="#1b9e77", label="Line of best fit")
-    plt.scatter(data["averageDown"], data["averageUpload"], s=1, color="#d95f02")
+    plt.scatter(data["averageDown"], data["averageUpload"], s=2, color="#d95f02")
     plt.xlabel("Average download speed (Mbit/s)")
     plt.ylabel("Average upload speed (Mbit/s)")
     plt.legend()
