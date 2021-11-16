@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def house_price_comparison():
@@ -25,10 +26,11 @@ def house_price_comparison():
     ax1.legend()
     ax1.set_title("London", fontsize=12)
     ax1.grid(True)
-    ax1.set_xlabel("Date")
+    ax1.set_xlabel("Year of sale")
     ax1.set_ylabel("Sale price")
     ax2.plot(pd.to_datetime(newcastle_detached["Date"]), newcastle_detached["averagePrice"], label="Detached")
-    ax2.plot(pd.to_datetime(newcastle_semi_detached["Date"]), newcastle_semi_detached["averagePrice"], label="Semi detached")
+    ax2.plot(pd.to_datetime(newcastle_semi_detached["Date"]), newcastle_semi_detached["averagePrice"],
+             label="Semi detached")
     ax2.plot(pd.to_datetime(newcastle_terraced["Date"]), newcastle_terraced["averagePrice"], label="Terraced")
     ax2.plot(pd.to_datetime(newcastle_flats["Date"]), newcastle_flats["averagePrice"], label="Flat")
     ax2.legend()
@@ -42,9 +44,19 @@ def house_price_comparison():
 def broadband_comparison():
     file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\B_broadbandData_2021\\B_broadbandData_2021\\202006_fixed_laua_performance_wrangled.csv"
     data = pd.read_csv(file)
+    m, b = np.polyfit(data["averageDown"], data["averageUpload"], 1)
+    plt.plot(data["averageDown"], m*data["averageDown"] + b, color="red", label="Line of best fit")
+    plt.scatter(data["averageDown"], data["averageUpload"], s=1)
+    plt.xlabel("Average download speed (Mbit/s)")
+    plt.ylabel("Average upload speed (Mbit/s)")
+    plt.legend()
+    plt.title("A comparison of broadband upload and download speeds")
+    plt.show()
 
+
+def stock_exchange():
+    test = "£"
 
 
 if __name__ == '__main__':
-    house_price_comparison()
-
+    broadband_comparison()
