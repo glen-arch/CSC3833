@@ -46,7 +46,6 @@ def broadband_comparison():
     data = pd.read_csv(file)
     m, b = np.polyfit(data["averageDown"], data["averageUpload"], 1)
     correlation = "The correlation between a regions average upload and download speeds is " + str(data["averageDown"].corr(data["averageUpload"]))
-    plt.figure(figsize=(16, 9), dpi=1920 / 16)
     plt.plot(data["averageDown"], m*data["averageDown"] + b, color="#ca0020", label="Line of best fit")
     plt.scatter(data["averageDown"], data["averageUpload"], s=10, color="#f4a582")
     plt.scatter(163, 24, label="Kingston upon Hull", color="#92c5de", s=10)
@@ -56,12 +55,24 @@ def broadband_comparison():
     plt.legend()
     plt.text(0, 0, correlation)
     plt.title("A comparison of regional average broadband upload and download speeds")
+    plt.grid(True)
     plt.show()
 
 
 def stock_exchange():
-    test = "£"
+    file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\C_financialData_2021\\C_financialData_2021\\ftse_data_wrangled.csv"
+    data = pd.read_csv(file)
+    plt.plot(pd.to_datetime(data["date"]), data["Open"])
+    plt.ylim(0, 8000)
+    plt.xlim(pd.to_datetime("1984-04-01"), pd.to_datetime("2021-10-08"))
+    plt.ylabel("Stock price (£)")
+    plt.xlabel("Year")
+    plt.title("Stock price of FTSE from 1984-2021")
+    plt.fill_between(pd.to_datetime(data["date"]), data["Open"], color="lightblue")
+    plt.grid(True)
+    plt.show()
 
 
 if __name__ == '__main__':
-   broadband_comparison()
+    # plt.figure(figsize=(16, 9), dpi=1920 / 16)
+    broadband_comparison()
