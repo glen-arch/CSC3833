@@ -25,6 +25,7 @@ def house_price_comparison():
     ax1.plot(pd.to_datetime(london_flats["Date"]), london_flats["averagePrice"], label="Flat", color="#33a02c")
     ax1.legend()
     ax1.set_title("London", fontsize=12)
+    ax1.xlim(pd.to_datetime(""))
     ax1.grid(True)
     ax1.set_xlabel("Year of sale")
     ax1.set_ylabel("Sale price")
@@ -75,4 +76,4 @@ def stock_exchange():
 
 if __name__ == '__main__':
     # plt.figure(figsize=(16, 9), dpi=1920 / 16)
-    broadband_comparison()
+    house_price_comparison()
