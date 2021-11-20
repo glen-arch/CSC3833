@@ -32,7 +32,7 @@ if __name__ == '__main__':
     newcastle_terraced = newcastle[newcastle.propertyType == "Terraced"]
     newcastle_flats = newcastle[newcastle.propertyType == "Flat"]
     title = "Average house sale prices in London compared to Newcastle upon Tyne 2001 - 2021"
-    fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(16, 9), dpi=1920 / 16)
+    fig, (ax1, ax2, ax3, ax4) = plt.subplots(1, 4, figsize=(16, 9), dpi=120)
     fig.suptitle(title, fontsize=12)
     ax1.plot(pd.to_datetime(london_detached["Date"]), london_detached["averagePrice"], label="Detached",
              color="#a6cee3")
@@ -44,6 +44,7 @@ if __name__ == '__main__':
     ax1.legend()
     ax1.set_title("London", fontsize=12)
     ax1.set_xlim(pd.to_datetime("2001-04-01"), pd.to_datetime("2021-04-01"))
+    ax1.get_yaxis().get_major_formatter().set_scientific(False)
     ax1.grid(True)
     ax1.set_xlabel("Year of sale")
     ax1.set_ylabel("Sale price")
@@ -77,6 +78,8 @@ if __name__ == '__main__':
     ax3.grid(True)
     file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\C_financialData_2021\\C_financialData_2021\\ftse_data_wrangled.csv"
     data = pd.read_csv(file)
+    mean_line = [data["Close"].mean()] * data["date"].count()
+    ax4.plot(pd.to_datetime(data["date"]), mean_line, linestyle="--", label="Mean")
     ax4.plot(pd.to_datetime(data["date"]), data["Open"])
     ax4.set_ylim(0, 8000)
     ax4.set_xlim(pd.to_datetime("1984-04-01"), pd.to_datetime("2021-10-08"))
