@@ -67,19 +67,24 @@ def broadband_comparison():
 def stock_exchange():
     file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\C_financialData_2021\\C_financialData_2021\\ftse_data_wrangled.csv"
     data = pd.read_csv(file)
-    plt.plot(pd.to_datetime(data["date"]), data["Open"])
-    plt.ylim(0, 8000)
+    sma = data["Close"].rolling(90).mean()
+    std = data["Close"].rolling(90).std()
+    plt.plot(pd.to_datetime(data["date"]), sma, color="green", label="Financial quarter smoothed moving average")
+    plt.plot(pd.to_datetime(data["date"]), sma + std * 2, linestyle="--", color="b", label="Bollinger up band")
+    plt.plot(pd.to_datetime(data["date"]), sma - std * 2, linestyle="--", color="r", label="Bollinger down band")
+    plt.ylim(0, 9000)
     plt.xlim(pd.to_datetime("1984-04-01"), pd.to_datetime("2021-10-08"))
     mean_line = [data["Close"].mean()] * data["date"].count()
     plt.plot(pd.to_datetime(data["date"]), mean_line, linestyle="--", label="Mean")
     plt.ylabel("Stock price (£)")
     plt.xlabel("Year")
     plt.title("Stock price of FTSE from 1984-2021")
-    plt.fill_between(pd.to_datetime(data["date"]), data["Open"], color="lightblue")
+    plt.fill_between(pd.to_datetime(data["date"]), sma, color="lightblue")
+    plt.legend()
     plt.grid(True)
     plt.show()
 
 
 if __name__ == '__main__':
     # plt.figure(figsize=(16, 9), dpi=120)
-    broadband_comparison()
+    house_price_comparison()
