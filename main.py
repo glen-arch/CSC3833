@@ -5,7 +5,7 @@ from matplotlib import patches
 
 def house_price_comparison():
     ax1 = plt.subplot(2, 2, 1)
-    file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\A_housePriceData_2021\\A_housePriceData_2021\\Average-prices-Property-Type-2021-05_wrangled.csv"
+    file = "A_housePriceData_2021\\A_housePriceData_2021\\Average-prices-Property-Type-2021-05_wrangled.csv"
     data = pd.read_csv(file)
     london = data[data["Region_Name"] == "London"]
     london_detached = london[london.propertyType == "Detached"]
@@ -43,16 +43,16 @@ def house_price_comparison():
 
 def broadband_comparison():
     ax2 = plt.subplot(2, 2, 2)
-    file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\B_broadbandData_2021\\B_broadbandData_2021\\202006_fixed_laua_performance_wrangled.csv"
+    file = "B_broadbandData_2021\\B_broadbandData_2021\\202006_fixed_laua_performance_wrangled.csv"
     data = pd.read_csv(file)
-    file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\Regression.csv"
+    file = "Regression.csv"
     regression = pd.read_csv(file)
     ax2.plot(regression["y"], regression["x"], color="#ca0020", label="Line of best fit")
     correlation = "The correlation between a\nregions average upload\nand download speeds is \n" + str(data["averageDown"].corr(data["averageUpload"]))
     ax2.scatter(data["averageDown"], data["averageUpload"], s=5, color="#f4a582")
     ax2.scatter(163, 24, label="Kingston upon Hull", color="#92c5de", s=10)
     ax2.scatter(147.1, 98.1, label="York", color="#0571b0", s=10)
-    hull = patches.Rectangle((158, 19), 10, 10, fill=False, color="black", linestyle="--", label="Anomaly")
+    hull = patches.Rectangle((158, 19), 10, 10, fill=False, color="black", linestyle="--", label="Outlier")
     york = patches.Rectangle((142.1, 93.1), 10, 10, fill=False, color="black", linestyle="--")
     ax2.add_patch(hull)
     ax2.add_patch(york)
@@ -69,7 +69,7 @@ def broadband_comparison():
 
 def stock_exchange():
     ax3 = plt.subplot(2, 2, 3)
-    file = "C:\\Users\\surfy\\PycharmProjects\\CSC3833\\C_financialData_2021\\C_financialData_2021\\ftse_data_wrangled.csv"
+    file = "C_financialData_2021\\C_financialData_2021\\ftse_data_wrangled.csv"
     data = pd.read_csv(file)
     sma = data["Close"].rolling(90).mean()
     std = data["Close"].rolling(90).std()
@@ -89,7 +89,13 @@ def stock_exchange():
 
 
 def observations():
-    test =""
+    ax4 = plt.subplot(2, 2, 4)
+    text = open("observations.txt", "r")
+    ax4.text(0.01, 0.05, text.read(), fontsize="8")
+    ax4.text(0.35, 0.94, "Summary of each plot", fontsize="12")
+    ax4.set_axis_off()
+    box = patches.Rectangle((0, 0), 1, 1, fill=False, color="black")
+    ax4.add_patch(box)
 
 
 if __name__ == '__main__':
@@ -101,4 +107,3 @@ if __name__ == '__main__':
     plt.subplots_adjust(hspace=0.3)
     plt.show()
     #plt.savefig("CSC3833.png", dpi=120)
-

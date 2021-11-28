@@ -1,0 +1,20 @@
+In the first graph the data shows that the location of a house is far more influential on its price
+than the type of house. This is shown as the most expensive type of house a detached house in
+Newcastle still ends up being less expensive than the least expensive type of house a flat in
+London. As well as this they will notice that the difference in price between Newcastle and London
+has been slowly growing since 2001. The viewer will then be able to see that the types of housing
+keep roughly the same relative value regardless of location. The viewer will also notice that
+house prices have been continuously on the rise apart from a dip after the housing crisis in 2008.
+
+In the second graph the viewer will first notice that for most places there is a very strong
+correlation between upload and download speeds. The viewer will then notice that there are 2
+outliers which are York and Hull which don't fit this trend. They will then notice the line of best
+fit and see that despite Hull being an outlier it still fits the trend as its upon the line of best
+fit. They will then see just how much of an outlier York is due to its incredibly high upload speeds.
+
+
+In the third graph the viewer will notice that the stock price on average has been increasing since
+1984. The viewer will then notice the Bollinger bands and see that they spike at certain points
+indicating market volatility. The viewer will then notice that due to crashes the increase in stock
+price from 2000-2021 was far less than the increase from 1984-2000. Due to the Bollinger bands
+the viewer will be able to understand this is due to 1984-2000 having a far more stable market.
